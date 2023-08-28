@@ -140,11 +140,11 @@ namespace mypcl
   void write_pose(std::vector<pose>& pose_vec, std::string path)
   {
     std::ofstream file;
-    file.open(path + "pose.json", std::ofstream::trunc);
+    file.open(path + "corrected.json", std::ofstream::trunc);
     file.close();
     Eigen::Quaterniond q0(pose_vec[0].q.w(), pose_vec[0].q.x(), pose_vec[0].q.y(), pose_vec[0].q.z());
     Eigen::Vector3d t0(pose_vec[0].t(0), pose_vec[0].t(1), pose_vec[0].t(2));
-    file.open(path + "pose.json", std::ofstream::app);
+    file.open(path + "corrected.json", std::ofstream::app);
 
     for(size_t i = 0; i < pose_vec.size(); i++)
     {

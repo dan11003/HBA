@@ -46,16 +46,19 @@ int main(int argc, char** argv)
   string file_path;
   double downsample_size, marker_size;
   int pcd_name_fill_num;
+  std::string file_name;
 
   nh.getParam("file_path", file_path);
   nh.getParam("downsample_size", downsample_size);
   nh.getParam("pcd_name_fill_num", pcd_name_fill_num);
   nh.getParam("marker_size", marker_size);
 
+  nh.getParam("file_name", file_name);
+
   sensor_msgs::PointCloud2 debugMsg, cloudMsg, outMsg;
   vector<mypcl::pose> pose_vec;
 
-  pose_vec = mypcl::read_pose(file_path + "pose.json");
+  pose_vec = mypcl::read_pose(file_path + file_name);
   size_t pose_size = pose_vec.size();
   cout<<"pose size "<<pose_size<<endl;
 

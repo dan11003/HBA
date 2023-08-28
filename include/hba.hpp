@@ -25,7 +25,7 @@ class LAYER
 public:
   int pose_size, layer_num, max_iter, part_length, left_size, left_h_size, j_upper, tail, thread_num,
     gap_num, last_win_size, left_gap_num;
-  double downsample_size, voxel_size, eigen_ratio, reject_ratio;
+  static double downsample_size, voxel_size, eigen_ratio, reject_ratio;
   
   std::string data_path;
   vector<mypcl::pose> pose_vec;
@@ -40,10 +40,10 @@ public:
     pose_size = 0;
     layer_num = 1;
     max_iter = 10;
-    downsample_size = 0.1;
+    /*downsample_size = 0.1;
     voxel_size = 4.0;
     eigen_ratio = 0.1;
-    reject_ratio = 0.05;
+    reject_ratio = 0.05;*/
     pose_vec.clear(); mthreads.clear(); pcds.clear();
     hessians.clear(); mem_costs.clear();
   }
@@ -120,6 +120,11 @@ public:
       downsample_size, voxel_size, eigen_ratio, reject_ratio);
   }
 };
+
+double LAYER::downsample_size = 0.1;
+double LAYER::voxel_size = 4.0;
+double LAYER::eigen_ratio = 0.1;
+double LAYER::reject_ratio = 0.05;
 
 class HBA
 {

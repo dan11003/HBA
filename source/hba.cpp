@@ -30,6 +30,7 @@ using namespace Eigen;
 
 int pcd_name_fill_num = 0;
 
+
 void cut_voxel(unordered_map<VOXEL_LOC, OCTO_TREE_ROOT*>& feat_map,
                 pcl::PointCloud<PointType>& feat_pt,
                 Eigen::Quaterniond q, Eigen::Vector3d t, int fnum,
@@ -504,6 +505,23 @@ int main(int argc, char** argv)
   nh.getParam("pcd_name_fill_num", pcd_name_fill_num);
   nh.getParam("data_path", data_path);
   nh.getParam("thread_num", thread_num);
+
+  double downsample_size, voxel_size, eigen_ratio, reject_ratio;
+  nh.getParam("downsample_size", downsample_size); // double  = 0.1;
+  nh.getParam("voxel_size", voxel_size); // double  = 4.0;
+  nh.getParam("eigen_ratio", eigen_ratio); // double  = 0.1;
+  nh.getParam("reject_ratio", reject_ratio); // double  = 0.05;
+
+  LAYER::downsample_size = downsample_size;
+  LAYER::voxel_size = voxel_size;
+  LAYER::eigen_ratio = eigen_ratio;
+  LAYER::reject_ratio = reject_ratio;
+
+  cout << "parameters:\n" << "downsample_size: " << LAYER::downsample_size << endl;
+  cout << "parameters:\n" << "voxel_size: " << LAYER::voxel_size << endl;
+  cout << "parameters:\n" << "eigen_ratio: " << LAYER::eigen_ratio << endl;
+  cout << "parameters:\n" << "reject_ratio: " << LAYER::reject_ratio << endl;
+
 
   HBA hba(total_layer_num, data_path, thread_num);
   for(int i = 0; i < total_layer_num-1; i++)
