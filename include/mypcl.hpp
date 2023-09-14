@@ -153,7 +153,8 @@ namespace mypcl
       pose_vec[i].q.x() = (q0.inverse()*pose_vec[i].q).x();
       pose_vec[i].q.y() = (q0.inverse()*pose_vec[i].q).y();
       pose_vec[i].q.z() = (q0.inverse()*pose_vec[i].q).z();
-      file << pose_vec[i].t(0) << " "
+      file << std::fixed << std::setprecision(9)
+           << pose_vec[i].t(0) << " "
            << pose_vec[i].t(1) << " "
            << pose_vec[i].t(2) << " "
            << pose_vec[i].q.w() << " " << pose_vec[i].q.x() << " "
